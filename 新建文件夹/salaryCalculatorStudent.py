@@ -1,14 +1,12 @@
 from tkinter import *
-
+#头疼
 def calculatePayment():
 
     salary = dollarVar.get()
 
     freq_str = freqVar.get()
-    try:
-        periods = int(freq_str.split()[0])
-    except ValueError:
-        periods = 1
+    periods = int(freq_str.split()[0])
+
 
 
     total_ded = taxVar.get() + rrspVar.get() + unionVar.get() + healthVar.get()
@@ -17,7 +15,6 @@ def calculatePayment():
 
     pay = net_annual / periods
 
-    # 更新界面
     paymentVar.set(f"${pay:,.2f}")
     yearVar.set(f"Annual after deductions: ${net_annual:,.2f}")
 

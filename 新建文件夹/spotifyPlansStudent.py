@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter.font import Font
 
 def updatePlan():
-    """Pull the selected plan index and update the info label."""
+
     idx = planChoiceVar.get()
     infoVar.set(planInformationList[idx])
 

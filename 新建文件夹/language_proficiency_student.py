@@ -2,9 +2,9 @@ from tkinter import *
 
 def calculate_proficiency():
 
-    # 统计所有 IntVar 中等于 1 的数量
+
     count = sum(var.get() for var in all_checkvars)
-    # 根据要求判断水平
+
     if count >= 6:
         level = "Expert"
     elif count >= 3:

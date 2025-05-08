@@ -2,61 +2,55 @@ from tkinter import *
 from tkinter.font import Font
 
 def updateAvailableConversions():
-    """Enable/disable the output radios so you can't convert to the same scale."""
     in_scale = convertInVar.get()
 
-    # First, re-enable all
     celciusOutRadio.config(state=NORMAL)
     fahrenheitOutRadio.config(state=NORMAL)
     kelvinOutRadio.config(state=NORMAL)
 
-    # Then disable the one matching the input
     if in_scale == "cel":
         celciusOutRadio.config(state=DISABLED)
-        # if the disabled one was selected, pick a different default
+
         if convertOutVar.get() == "cel":
             convertOutVar.set("fah")
     elif in_scale == "fah":
         fahrenheitOutRadio.config(state=DISABLED)
         if convertOutVar.get() == "fah":
             convertOutVar.set("cel")
-    else:  # kel
+    else:
         kelvinOutRadio.config(state=DISABLED)
         if convertOutVar.get() == "kel":
             convertOutVar.set("cel")
 
 def convertTemp():
-    """Read the input, do the math, and display a rounded, approximate result."""
-    try:
-        t_in = float(tempInVar.get())
-    except ValueError:
-        tempOutVar.set("Invalid")
-        return
+
+    t_in = float(tempInVar.get())
+
 
     src = convertInVar.get()
     dst = convertOutVar.get()
 
-    # Step 1: convert everything to Celsius
+
     if src == "cel":
         c = t_in
     elif src == "fah":
         c = (t_in - 32) * 5/9
-    else:  # kelvin
+    else:
         c = t_in - 273.15
 
-    # Step 2: convert Celsius to target
+
     if dst == "cel":
         result = c
     elif dst == "fah":
         result = c * 9/5 + 32
-    else:  # kelvin
+    else:
         result = c + 273.15
 
-    # Display as “~<whole number>°”
+
     tempOutVar.set(f'~{round(result)}°')
 
 
-# ─────────── UI SETUP ────────────────────────────────────────────────────
+
 root = Tk()
 root.title("Temperature Converter")
 
@@ -68,7 +62,6 @@ smallF = Font(family="Mayflower Antique", size=20)
 largeF = Font(family="Mayflower Antique", size=40)
 xlargeF = Font(family="Mayflower Antique", size=80)
 
-# ─── “Temperature in” ─────────────────────────────────────────────────────
 scaleInFrame = LabelFrame(mainframe, text="temperature in", font=smallF)
 scaleInFrame.grid(row=2, column=1, rowspan=3, padx=50, sticky=N)
 
@@ -79,7 +72,7 @@ for txt, val, r in [("celcius","cel",1), ("fahrenheit","fah",2), ("kelvin","kel"
         font=largeF, command=updateAvailableConversions
     ).grid(row=r, sticky=W)
 
-# ─── “Temperature out” ────────────────────────────────────────────────────
+
 scaleOutFrame = LabelFrame(mainframe, text="temperature out", font=smallF)
 scaleOutFrame.grid(row=2, column=3, rowspan=3, padx=50, sticky=N)
 
@@ -95,7 +88,7 @@ celciusOutRadio.grid(row=1, sticky=W)
 fahrenheitOutRadio.grid(row=2, sticky=W)
 kelvinOutRadio.grid(row=3, sticky=W)
 
-# ─── Entry, Button, and Result ─────────────────────────────────────────────
+
 Label(mainframe, text="temp in?", font=smallF).grid(row=2, column=2, sticky=NW)
 
 tempInVar = StringVar()
@@ -108,7 +101,6 @@ Button(mainframe, text="convert", font=largeF, command=convertTemp)\
 tempOutVar = StringVar()
 Label(mainframe, textvariable=tempOutVar, font=xlargeF).grid(row=5, column=2)
 
-# initialize the “out” buttons state to match the default “in” selection
 updateAvailableConversions()
 
 root.mainloop()

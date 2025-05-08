@@ -21,7 +21,7 @@ def accept_message():
         accept_button.config(state=DISABLED)
         signature_var.set("")
     else:
-        # 未输入，提醒并将背景设为黄色
+        # 提醒并将背景设为黄色
         signature_var.set("Please enter your name")
         signature_entry.config(bg="yellow")
 
@@ -39,15 +39,13 @@ root.title("Terms & Conditions")
 mainframe = Frame(root)
 mainframe.grid(padx=80, pady=80, sticky=N+S+E+W)
 
-# 字体设置
+
 timesFontSmall = Font(family="Times New Roman", size=20)
 timesFontLarge = Font(family="Times New Roman", size=30)
 
-# 标题
 titleLabel = Label(mainframe, text="Terms of Agreement", font=timesFontLarge)
 titleLabel.grid(row=0, column=1, columnspan=2, sticky=W)
 
-# 条款文本
 conditions = """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tristique quam ut lectus interdum, vitae elementum velit mattis. Proin elit odio, porta at ex id, scelerisque rutrum dui. Vestibulum blandit lectus massa, nec rutrum felis ullamcorper eget. Maecenas molestie odio tellus. Aliquam rutrum euismod metus vitae fringilla. Suspendisse lobortis tellus ac felis porta, sit amet interdum nisi commodo. Donec eros arcu, accumsan sit amet varius a, sollicitudin at massa. Pellentesque vitae imperdiet tortor, vel scelerisque odio. Donec vel ante facilisis, tristique felis non, malesuada urna. Sed faucibus tempus dolor quis condimentum. Suspendisse blandit mattis nulla sit amet imperdiet. Pellentesque dapibus efficitur ullamcorper. Aenean maximus ipsum nec tellus viverra, quis tempor ligula maximus.
 
 Ut ac elit sit amet tortor efficitur aliquam. Morbi felis dui, vestibulum sit amet nulla sit amet, elementum consequat lorem. Nulla semper massa nec massa eleifend, non luctus mi auctor. Aliquam suscipit arcu vel viverra convallis. Mauris turpis odio, finibus sed mi sed, lobortis eleifend dui. Morbi dignissim facilisis augue at hendrerit. Nullam tempus volutpat est, ut aliquam neque iaculis quis. Quisque et nisl sed orci fringilla condimentum finibus id nulla.
